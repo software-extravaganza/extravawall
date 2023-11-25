@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "nuke.globaltool": {
+      "version": "7.0.5",
+      "commands": [
+        "nuke"
+      ]
+    },
+    "altcover.global": {
+      "version": "8.6.68",
+      "commands": [
+        "altcover"
+      ]
+    },
+    "dotnet-reportgenerator-globaltool": {
+      "version": "5.1.21",
+      "commands": [
+        "reportgenerator"
+      ]
+    },
+    "dotnet-sonarscanner-globaltool": {
+      "version": "5.2.1",
+      "commands": [
+        "dotnet-sonarscanner"
+      ]
+    },
+    "SpecFlow.Plus.LivingDoc.CLI": {
+      "version": "3.9.57",
+      "commands": [
+        "livingdoc"
+      ]
+    }
+  }
+}
