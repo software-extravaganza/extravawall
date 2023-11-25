@@ -2,15 +2,18 @@ networks:
   extravawall-network:
     name: extravawall-network
     driver: bridge
+  extravawall-web-network:
+    external: true
 
 services:
-  extravawall-service:
-    container_name: extravawall
-    image: localhost/extravawall:latest
+  extravawall-web-service:
+    container_name: extravawall-web
+    image: localhost/extravawall-web:latest
     build: .
     restart: always
     networks:
       - extravawall-network
+      - extravawall-web-network
     ports:
       - 8080:5001
     depends_on:
@@ -26,7 +29,7 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
-      - extravawall-service
+      - extravawall-web-service
   
   
   extravawall-grafana-service:

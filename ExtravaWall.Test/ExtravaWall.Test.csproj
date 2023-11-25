@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <nullable>enable</nullable>
   </PropertyGroup>
   <ItemGroup>
@@ -21,6 +21,6 @@
     <!-- <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" /> -->
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExtravaCore\ExtravaCore.csproj" />
+    <ProjectReference Include="..\ExtravaWall\ExtravaWall.csproj" />
   </ItemGroup>
 </Project>

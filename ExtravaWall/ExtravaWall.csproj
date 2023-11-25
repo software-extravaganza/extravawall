@@ -4,6 +4,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ContainerImageName>extravawall-web</ContainerImageName>
+    <ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:8.0</ContainerBaseImage>
+    <ContainerImageTags>2.0.0;latest</ContainerImageTags>
   </PropertyGroup>
 
   <ItemGroup>

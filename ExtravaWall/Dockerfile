@@ -1,13 +1,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /source
 
-COPY ExtravaWall.sln .
-COPY ExtravaWall/ExtravaWall.csproj ./ExtravaWall/ExtravaWall.csproj 
+#COPY ExtravaWall.sln .
+COPY ExtravaWall.csproj ./ExtravaWall.csproj 
 #COPY Ticketer.WebApp/Ticketer.WebApp.csproj ./Ticketer.WebApp/Ticketer.WebApp.csproj
-RUN dotnet restore ./ExtravaWall/ExtravaWall.csproj 
+RUN dotnet restore ./ExtravaWall.csproj 
 #RUN dotnet restore ./Ticketer.WebApp/Ticketer.WebApp.csproj
 
-COPY ExtravaWall/. ./ExtravaWall/
+COPY . ./
 #COPY Ticketer.WebApp/. ./Ticketer.WebApp/
 WORKDIR /source/ExtravaWall
 RUN dotnet publish -c release /p:EnvironmentName=docker-compose-dev -o /app
