@@ -1,0 +1,11 @@
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "extravawall-web"
+    honor_timestamps: true
+    scrape_interval: 3s
+    scrape_timeout: 2s
+    metrics_path: /metrics
+    scheme: http
+    static_configs:
+      - targets:
+        - extravawall-web-service:8080

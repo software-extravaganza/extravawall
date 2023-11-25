@@ -1,63 +1,71 @@
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+    extravawall-db-data: {}
+
 networks:
-  extravawall-network:
-    name: extravawall-network
+  extravawall-network-internal:
+    name: extravawall-network-internal
     driver: bridge
-  extravawall-web-network:
-    external: true
 
 services:
   extravawall-web-service:
     container_name: extravawall-web
     image: localhost/extravawall-web:latest
-    build: .
-    restart: always
+    #build: .
+    #command: dotnet publish --os linux --arch x64 /t:PublishContainer -c Release
+    restart: unless-stopped
     networks:
-      - extravawall-network
-      - extravawall-web-network
+      - extravawall-network-internal
     ports:
-      - 8080:5001
+      - 5001:8080
     depends_on:
       - extravawall-db-service
   
   extravawall-prometheus-service:
     container_name: extravawall-prometheus
-    image: prom/prometheus:latest
+    image: docker.io/prom/prometheus:latest
     networks:
-      - extravawall-network
+      - extravawall-network-internal
     ports:
       - 9090:9090
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./container-files/prometheus:/etc/prometheus:Z
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
     depends_on:
       - extravawall-web-service
-  
+    restart: unless-stopped
   
   extravawall-grafana-service:
     container_name: extravawall-grafana
-    image: grafana/grafana:latest
+    image: docker.io/grafana/grafana:latest
     networks:
-      - extravawall-network
+      - extravawall-network-internal
     ports:
       - 3000:3000
     volumes:
-      - ./grafana-provisioning:/etc/grafana/provisioning
+      - grafana_data:/var/lib/grafana
+      - ./container-files/grafana:/etc/grafana:Z
     depends_on: 
       - extravawall-prometheus-service
+    restart: unless-stopped
   
   extravawall-db-service:
     container_name: extravawall-db
-    image: postgres:latest
+    image: docker.io/postgres:latest
     networks:
-      - extravawall-network
+      - extravawall-network-internal
     ports:
       - 5432:5432
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: develop
       POSTGRES_DB: extravawall
     volumes:
       - extravawall-db-data:/var/lib/postgres
-
-volumes:
-  extravawall-db-data:
