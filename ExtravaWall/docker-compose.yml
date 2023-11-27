@@ -1,7 +1,7 @@
 volumes:
     prometheus_data: {}
     grafana_data: {}
-    extravawall-db-data: {}
+    extravawall_db_data: {}
 
 networks:
   extravawall-network-internal:
@@ -24,7 +24,7 @@ services:
   
   extravawall-prometheus-service:
     container_name: extravawall-prometheus
-    image: docker.io/prom/prometheus:latest
+    image: docker.io/prom/prometheus:v2.48.0
     networks:
       - extravawall-network-internal
     ports:
@@ -43,7 +43,7 @@ services:
   
   extravawall-grafana-service:
     container_name: extravawall-grafana
-    image: docker.io/grafana/grafana:latest
+    image: docker.io/grafana/grafana-oss:10.2.2
     networks:
       - extravawall-network-internal
     ports:
@@ -54,18 +54,20 @@ services:
     depends_on: 
       - extravawall-prometheus-service
     restart: unless-stopped
+    environment:
+      - GF_INSTALL_PLUGINS=volkovlabs-echarts-panel
   
   extravawall-db-service:
     container_name: extravawall-db
-    image: docker.io/postgres:latest
+    image: docker.io/dolthub/dolt-sql-server:1.28.1
     networks:
       - extravawall-network-internal
     ports:
-      - 5432:5432
+      - 3306:3306
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: develop
-      POSTGRES_DB: extravawall
     volumes:
-      - extravawall-db-data:/var/lib/postgres
+    #  - ./container-files/doit/servercfg:/etc/dolt/servercfg.d:Z
+    #  - ./container-files/doit/doltcfg:/etc/dolt/doltcfg.d:Z
+      - extravawall_db_data:/var/lib/dolt
+    #environment:
+

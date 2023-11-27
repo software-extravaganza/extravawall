@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
 using ExtravaWall;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
@@ -29,6 +31,17 @@ builder.Services.AddOpenTelemetry()
 
 builder.Services.AddSingleton<ExtravaMetrics>();
 builder.Services.AddMetrics();
+
+var connectionString = "server=localhost;user=root;password=;database=extravawall";
+var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect(connectionString));
+builder.Services.AddDbContext<ExtravaWallContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+    .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
+
+
 
 var app = builder.Build();
 

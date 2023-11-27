@@ -20,8 +20,8 @@
         "reportgenerator"
       ]
     },
-    "dotnet-sonarscanner-globaltool": {
-      "version": "5.2.1",
+    "dotnet-sonarscanner": {
+      "version": "5.15.0",
       "commands": [
         "dotnet-sonarscanner"
       ]
@@ -30,6 +30,12 @@
       "version": "3.9.57",
       "commands": [
         "livingdoc"
+      ]
+    },
+    "dotnet-ef": {
+      "version": "8.0.0",
+      "commands": [
+        "dotnet-ef"
       ]
     }
   }

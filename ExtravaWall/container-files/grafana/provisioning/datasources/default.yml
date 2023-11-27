@@ -1,0 +1,19 @@
+apiVersion: 1
+
+datasources:
+  - name: ExtravaWallPrometheus
+    type: prometheus
+    access: proxy
+    url: http://extravawall-prometheus-service:9090
+    basicAuth: false
+    basicAuthUser:
+    basicAuthPassword:
+    withCredentials: false
+    isDefault: true
+    jsonData:
+      graphiteVersion: "1.1"
+      tlsAuth: false
+      tlsAuthWithCACert: false
+      tlsSkipVerify: false
+      tlsAuthCACerts:
+    editable: false
