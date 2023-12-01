@@ -1,0 +1,69 @@
+
+
+.extrava-dockview {
+    width: calc(100% + var(--app-shell-padding) * 2) !important;
+    margin: calc(-1 * var(--app-shell-padding));
+    min-height: var(--_section-height,calc(100dvh - calc(var(--app-shell-header-offset, 0px))  - var(--app-shell-footer-offset, 0px)) ) !important;
+}
+
+.extrava-dockscroll{
+    height: calc(100% - 0px) !important;
+    overflow: auto !important;
+}
+/* 
+.dockview-react-part, .content-container, .tabs-and-actions-container, .groupview{
+    overflow: visible !important;
+} */
+
+.logo-company-dark{
+    background: url(resources/company-logo-dark.svg);
+}
+
+.logo-company-light{
+    background: url(resources/company-logo-light.svg);
+}
+
+.logo-company-dark, .logo-company-light{
+    display: block;
+    margin: 5px;
+    width: 250px;
+    height: 29px;
+    background-size: 250px 29px;
+    background-origin: content-box;
+}
+
+.logo-mark-dark{
+    background: url(resources/company-logo-dark.svg);
+}
+
+.logo-mark-light{
+    background: url(resources/company-logo-light.svg);
+}
+
+.logo-mark-dark, .logo-mark-light{
+    display: inline-block;
+    margin: 5px calc(var(--mantine-spacing-xs)*2);
+    width: 85px;
+    height: 29px;
+    background-size: 250px 29px;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    float:inline-start;
+
+    @media (max-width: 48em) {
+        float:inline-end;
+    }
+
+    @media (max-width: 32em) {
+        display:none;
+    }
+}
+
+.extrava-burger{
+    float: inline-start;
+    padding: 17px 10px;
+}
+
+.extrava-breakcrumbs{
+    padding: 12px 15px;
+}
