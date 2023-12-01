@@ -21,6 +21,8 @@ services:
       - 5001:8080
     depends_on:
       - extravawall-db-service
+    environment:
+      - ASPNETCORE_HTTP_PORTS=8080
   
   extravawall-prometheus-service:
     container_name: extravawall-prometheus
@@ -66,8 +68,8 @@ services:
       - 3306:3306
     restart: unless-stopped
     volumes:
-    #  - ./container-files/doit/servercfg:/etc/dolt/servercfg.d:Z
-    #  - ./container-files/doit/doltcfg:/etc/dolt/doltcfg.d:Z
+    #  - ./container-files/dolt/servercfg:/etc/dolt/servercfg.d:Z
+    #  - ./container-files/dolt/doltcfg:/etc/dolt/doltcfg.d:Z
       - extravawall_db_data:/var/lib/dolt
     #environment:
 

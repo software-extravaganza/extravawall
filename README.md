@@ -21,6 +21,18 @@ dotnet ef dbcontext scaffold "Server=localhost;User=root;Password=;Database=extr
 
 Database Migrations
 ```
-dotnet ef migrations add InitialCreate
-dotnet ef database update
+dotnet ef migrations add InitialCreate --context ExtravaWallContext
+dotnet ef database update --context ExtravaWallContext
+```
+
+
+DB Queries
+```
+use extravawall;
+select * from dolt_branches;
+select active_branch();
+SELECT * FROM users;
+CALL DOLT_CHECKOUT('the-sacred-timeline');
+CALL DOLT_CHECKOUT('main');
+
 ```
