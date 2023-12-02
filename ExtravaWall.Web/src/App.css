@@ -67,3 +67,21 @@
 .extrava-breakcrumbs{
     padding: 12px 15px;
 }
+
+.extrava-spacer{
+    flex-grow:1;
+}
+
+.extrava-tab{
+    padding: 12px 15px;
+    max-width:12rem;
+    min-width:4rem;
+}
+
+.tab-content span{
+    max-width: 6rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+}

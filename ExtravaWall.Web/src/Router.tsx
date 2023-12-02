@@ -11,7 +11,8 @@ const router = createBrowserRouter([
 
 function getBladeManager(bladeManager: BladeManager) {
   console.log('getBladeManager');
-  bladeManager.addBlade('home', <RouterProvider router={router} />);
+  bladeManager.addBlade('Home', <RouterProvider router={router} />);
+  bladeManager.addBlade('Home2 sdfsdf sdf sdf sd', <RouterProvider router={router} />);
 }
 
 export function Router() {
